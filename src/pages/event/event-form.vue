@@ -42,7 +42,7 @@
             </el-upload>
         </el-form-item>
         <el-row class="ft16 mb20">拼团设置：</el-row>
-        <el-form-item label="拼团所需人数：" prop="other_need_num" v-if="!(isEdit && form.has_order!=1)">
+        <el-form-item label="拼团所需人数：" prop="other_need_num" v-if="!(isEdit && form.has_order==1)">
             <el-radio v-model="need_num" label="5">5人</el-radio>
             <el-radio v-model="need_num" label="10">10人</el-radio>
             <el-radio v-model="need_num" label="15">15人</el-radio>
@@ -52,13 +52,13 @@
                 人
             </el-radio>
         </el-form-item>
-        <el-form-item label="拼团所需人数：" v-else>{{form.need_price}}</el-form-item>
+        <el-form-item label="拼团所需人数：" v-else>{{form.need_num}}</el-form-item>
 
         <el-form-item class="iblock"
                       label="总库存："
                       label-width="110px"
                       prop="store_nums"
-                      v-if="!(isEdit && form.has_order!=1)">
+                      v-if="!(isEdit && form.has_order==1)">
             <el-input v-model.number="form.store_nums" placeholder="输入大于0的整数"></el-input>
         </el-form-item>
         <el-form-item label="总库存：" v-else>{{form.store_nums}}</el-form-item>
@@ -67,18 +67,18 @@
                       label="单位："
                       label-width="110px"
                       prop="unit"
-                      v-if="!(isEdit && form.has_order!=1)">
+                      v-if="!(isEdit && form.has_order==1)">
             <el-input v-model="form.unit"></el-input>
         </el-form-item>
         <el-form-item label="单位：" v-else>{{form.unit}}</el-form-item>
 
-        <el-form-item label="运费设置：" prop="freight_way" v-if="!(isEdit && form.has_order!=1)">
+        <el-form-item label="运费设置：" prop="freight_way" v-if="!(isEdit && form.has_order==1)">
             <el-radio v-model="form.freight_way" label="1">平台包邮</el-radio>
             <el-radio v-model="form.freight_way" label="2">用户支付</el-radio>
         </el-form-item>
         <el-form-item label="运费设置：" v-else>{{form.freight_way === '1' ? '平台包邮' : '用户支付'}}</el-form-item>
 
-        <el-form-item label="兑换所需钻：" prop="other_need_price" v-if="!(isEdit && form.has_order!=1)">
+        <el-form-item label="兑换所需钻：" prop="other_need_price" v-if="!(isEdit && form.has_order==1)">
             <el-radio v-model="need_price" label="1">1钻</el-radio>
             <el-radio v-model="need_price" label="5">5钻</el-radio>
             <el-radio v-model="need_price" label="10">10钻</el-radio>

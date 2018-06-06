@@ -66,15 +66,17 @@
             >{{item.name}}</span>
         </div>
         <el-row :class="{'table-header-fixed-wrap':tableHeaderFixed}" ref="tableHeader">
-            <el-row class="table-header tc">
-                <el-col class="tl" :span="9">宝贝信息</el-col>
-                <el-col :span="3">
-                    <el-button type="text" @click="sortOrderList">下单时间{{Boolean(params.sort) ? '↑' : '↓'}}
-                    </el-button>
-                </el-col>
-                <el-col :span="4">订单状态</el-col>
-                <el-col :span="4">发件信息</el-col>
-                <el-col :span="4">收件信息</el-col>
+            <el-row :class="{'table-header-fixed-box':tableHeaderFixed}">
+                <el-row class="table-header tc">
+                    <el-col class="tl" :span="9">宝贝信息</el-col>
+                    <el-col :span="3">
+                        <el-button type="text" @click="sortOrderList">下单时间{{Boolean(params.sort) ? '↑' : '↓'}}
+                        </el-button>
+                    </el-col>
+                    <el-col :span="4">订单状态</el-col>
+                    <el-col :span="4">发件信息</el-col>
+                    <el-col :span="4">收件信息</el-col>
+                </el-row>
             </el-row>
         </el-row>
         <el-row class="table-header tc" v-show="tableHeaderFixed"></el-row>
@@ -242,7 +244,7 @@
             const tableHeaderTop = this.$refs['tableHeader'].$el.offsetTop
             window.onscroll = () => {
                 const scrollTop = document.querySelector('html,body').scrollTop
-                if (scrollTop > tableHeaderTop) {
+                if (scrollTop > tableHeaderTop - 60) {
                     this.tableHeaderFixed = true
                 } else {
                     this.tableHeaderFixed = false
@@ -452,14 +454,15 @@
             min-width: 1200px;
             position: fixed;
             left: 0;
-            top: 0;
+            top: 60px;
             width: 100%;
-            padding: 0 100px 0 356px;
+            padding: 0 60px 0 316px;
             z-index: 5;
-            .table-header {
+            .table-header-fixed-box {
                 max-width: 1220px;
-                min-width: 780px;
+                min-width: 860px;
                 margin: 0 auto;
+                padding: 0 40px;
             }
         }
         .table-header {

@@ -38,7 +38,7 @@ const event = {
             name: 'event_copyevent',
             hidden: true,
             meta: {
-                title: '赋值活动'
+                title: '复制活动'
             },
             component: () => import('@/pages/event/copy-event.vue')
         },

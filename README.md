@@ -1,6 +1,6 @@
 # qyb-admin
 
-> A Vue.js project
+> 基于vue+element-ui+vuex+vue-router开发的后台管理系统
 
 ## Build Setup
 
