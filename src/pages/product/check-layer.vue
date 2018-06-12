@@ -90,6 +90,14 @@
                             this.$message.error('请填写其他修改理由')
                             return false
                         }
+                        let bigSmallReason = []
+                        for (let i in this.checkText) {
+                            i < 3 && bigSmallReason.push(this.checkText[i].content)
+                        }
+                        if (bigSmallReason.every(val => this.editReason.includes(val))) {
+                            this.$message.error('修改理由的大小件修改只能选一项')
+                            return false
+                        }
                         data.reason_rejection = []
                         for (let i in this.checkText) {
                             for (let j in this.editReason) {

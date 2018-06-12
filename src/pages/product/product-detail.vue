@@ -115,7 +115,8 @@
                             <div class="v-line" v-if="status==='-3'||status==='-4'"></div>
                             <div class="check-right-wrap" v-if="p_data.checkText && status==='-3'">
                                 <el-checkbox-group class="edit-reason" v-model="editReason">
-                                    <el-checkbox v-for="(item,index) in p_data.checkText" :key="index" :label="item.content"
+                                    <el-checkbox v-for="(item,index) in p_data.checkText" :key="index"
+                                                 :label="item.content"
                                                  name="reason">
                                         <el-input v-if="item.tips===6"
                                                   class="other-reason"
@@ -339,15 +340,19 @@
                             this.$message.error('请填写其他修改理由')
                             return false
                         }
-                        if (['1', '2'].every(val => this.editReason.includes(val))) {
+                        let bigSmallReason = []
+                        for (let i in this.p_data.checkText) {
+                            i < 3 && bigSmallReason.push(this.p_data.checkText[i].content)
+                        }
+                        if (bigSmallReason.every(val => this.editReason.includes(val))) {
                             this.$message.error('修改理由的大小件修改只能选一项')
                             return false
                         }
                         data.reason_rejection = []
-                        for (let i in this.checkText) {
+                        for (let i in this.p_data.checkText) {
                             for (let j in this.editReason) {
-                                if (this.checkText[i].content === this.editReason[j]) {
-                                    let reason_rejection_item = this.checkText[i]
+                                if (this.p_data.checkText[i].content === this.editReason[j]) {
+                                    let reason_rejection_item = this.p_data.checkText[i]
                                     let content = this.editReason[j]
                                     if (this.editReason[j] === '') {
                                         content = this.other_reason
@@ -452,7 +457,7 @@
                 left: 0;
             }
         }
-        .check-fixed-box{
+        .check-fixed-box {
             min-width: 1200px;
             position: fixed;
             left: 0;
